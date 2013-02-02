@@ -40,7 +40,14 @@
                     <a class="brand" href="#">LiteLab</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#architecture">Architecture</a></li>
+                                    <li><a href="#srouter">Software Simulated Router</a></li>
+                                    <li><a href="#resources">Smart Resources Management</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -53,48 +60,87 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
                 <h1>LiteLab Platform</h1>
+                <p></p>
                 <p>LiteLab is a light-weight platform specialized for large-scale networking experiments. It takes advantages of overlay network techniques and power of computing cluster, providing a flexible experiment platform with many uses. LiteLab helps researchers reduce the experiment complexity and speeds up experiment life-cycle, and at the same time, provides satisfying accuracy.</p>
             </div>
 
             <!-- Example row of columns -->
             <div class="row">
                 <div class="span4">
-                    <h2>Scalable</h2>
+                    <h2 class="hcl1">Scalable</h2>
                     <p>LiteLab can easily scale up the experiment to tens of thousands of nodes given any topology. Configuration and setup are simple.</p>
-                    <a href="img/architecture.png"><img src="img/architecture.png"></a>
+                    <p><a class="btn" href="#architecture">View details &raquo;</a></p>
                 </div>
                 <div class="span4">
-                    <h2>Flexible</h2>
+                    <h2 class="hcl2">Flexible</h2>
                     <p>The simulated router is highly customizable and extensible. Plugging in user-defined modules requires minimum overheads.</p>
-                    <a href="img/srouter_architecture.png"><img src="img/srouter_architecture.png"></a>
+                    <p><a class="btn" href="#srouter">View details &raquo;</a></p>
                </div>
                 <div class="span4">
-                    <h2>Adaptive</h2>
+                    <h2 class="hcl3">Adaptive</h2>
                     <p>LiteLab utilizes and allocates the resources wisely based on the current load on the computing cluster.</p>
-                    <a href="img/minnodeset.png"><img src="img/minnodeset.png"></a>
+                    <p><a class="btn" href="#resources">View details &raquo;</a></p>
                 </div>
             </div>
             
             <br />
             
+            <div class="row">
+            <div class="span" id="architecture">
+            	<h2 class="hcls">Architecture</h2>
+            	<p>The goal of LiteLab is to provide an easy to use, fully-fledged network experiment platform. Figure 1 shows the general system architecture. LiteLab consists of two subsystems: <b>Agent Subsystem</b> and <b>Overlay Subsystem</b>.</p>
+            	
+	            	<ul>
+		            	<li><b>Agent Subsystem</b> provides a stable and uniform experiment infrastructure. It hides the communication complexity, resource failures and other underlying details from the Overlay Subsystem. It is responsible for managing physical nodes, allocating resources, administrating jobs, monitoring experiments and collecting results.</li>
+		            	<li><b>Overlay Subsystem</b> constructs an experiment overlay with the resources from Agent Subsystem. One overlay instance corresponds to a job, therefore LiteLab can have multiple over- lay instances running in parallel at the same time. </li>
+	            	</ul>
+
+            	<p style="text-align:center"><a href="img/architecture.png"><img src="img/architecture.png" style="width:75%" alt=""></a><br/>Figure 1: LiteLab architecture</p>
+            </div>
+            </div>
+            
+            <div class="row">
+            <div class="span" id="srouter">
+            	<h2 class="hcls">Software Simulated Router</h2>
+            	<p>SRouter is the most critical component in Overlay Subsystem. It is a software abstraction of a realistic router. Due to its light-weight, multiple SRouters can run on one node. Users can configure many parameters of SRouters, e.g., link properties (delay, loss rate, bandwidth), queue size, queuing policy, and so on. Figure 2 shows the internal mechanism of SRouter.</p>
+            	<p style="text-align:center"><a href="img/srouter_architecture.png"><img src="img/srouter_architecture.png" style="width:75%" alt=""></a><br /> Figure 2: SRouter internal mechanism</p>
+            	<p>LiteLab is highly customizable and extensible. It is very simple to plug in user-defined modules without modifying the code and substitute default modules. SRouter can also be used as end-system instead of doing simple routing task. When used as end-system, user-implemented applications can be run on top of it.</p>
+            </div>
+            </div>
+            
+            <div class="row">
+            <div class="span" id="resources">
+            	<h2 class="hcls">Smart Resources Management</h2>
+            	<p>LiteLab uses <b>Mapping module</b> to map virtual resources to physical resources. The goal is to maximize resource utilization, and also to guarantee no violation of physical capacity. Four metrics are taken into account: CPU load, network traffic, memory usage and use of pseudo-terminal devices. The core of mapping module is an LP solver. As the figure 3 shows, Mapping module takes node states and job description as inputs, and outputs the optimal deployment matrix.</p>
+            	<p style="text-align:center"><a href="img/minnodeset.png">
+            	<img src="img/mapping_workflow.png" style="width:70%" alt=""></a>
+            	<br/>Figure 3: An LP solver for resources allocation</p>
+            </div>
+            </div>
+            
             <div class="row" id="contact">
 	            <div class="span">
-	            	<h2>Contact</h2>
-	            	<p>
-	            		<b>Prof. Jussi Kangasharju</b>, Professor, Department of Computer Science, University of Helsinki.
-	            	</p>
-	            	
-	            	<p>
-	            		<b>Liang Wang</b>, PhD. student, Department of Computer Science, University of Helsinki.
-	            	</p>
-	            </div>		
-            </div>
-
+	            	<h2 class="hcls">Contact</h2>
+	            	<p>For the detailed information of LiteLab, you can contact following people:</p>
+                
+                <div class="span5">
+                    <p><b>Prof. Jussi Kangasharju</b>, Professor <br/>
+                    Department of Computer Science, University of Helsinki.</p>
+                    <p><a class="btn" href="http://www.cs.helsinki.fi/u/jakangas/">Contact Information &raquo;</a></p>
+                </div>
+                
+                <div class="span5">
+                    <p><b>Liang Wang</b>, PhD. student <br />
+                    Department of Computer Science, University of Helsinki.</p>
+                    <p><a class="btn" href="http://www.cs.helsinki.fi/u/lxwang/">Contact Information &raquo;</a></p>
+                </div>
+	            </div>
+	        </div>
+            
             <hr>
 
-
             <footer>
-                <p>&copy; Department of Computer Science, University of Helsinki 2012</p>
+                <p>&copy; Department of Computer Science, University of Helsinki 2013</p>
             </footer>
 
         </div> <!-- /container -->
